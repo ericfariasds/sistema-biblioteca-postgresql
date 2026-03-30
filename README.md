@@ -2,7 +2,7 @@
 
 Projeto de banco de dados relacional para gerenciamento de uma biblioteca, desenvolvido com **PostgreSQL**.
 
-## 🗂️ Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 biblioteca/
@@ -18,7 +18,7 @@ biblioteca/
     └── consultas.sql       # Consultas úteis
 ```
 
-## 🗄️ Tabelas
+## Tabelas
 
 | Tabela | Descrição |
 |---|---|
@@ -29,7 +29,7 @@ biblioteca/
 | `emprestimos` | Registro de empréstimos e devoluções |
 | `multas` | Multas por atraso na devolução |
 
-## ⚙️ Funcionalidades
+## Funcionalidades
 
 ### Triggers
 - Atualiza estoque automaticamente ao emprestar/devolver
@@ -49,7 +49,7 @@ biblioteca/
 - `vw_livros_mais_emprestados` — Ranking de popularidade
 - `vw_membros_em_atraso` — Membros com pendências
 
-## 🚀 Como executar
+## Como executar
 
 ```bash
 # 1. Criar o banco de dados
