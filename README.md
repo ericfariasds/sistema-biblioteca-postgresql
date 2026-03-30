@@ -74,11 +74,11 @@ psql -d Biblioteca -f data/seed.sql
 psql -d Biblioteca -f queries/consultas.sql
 ```
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 - PostgreSQL 12+
 - PL/pgSQL
 
-## 👤 Autor
+## Autor
 
 Eric Farias
