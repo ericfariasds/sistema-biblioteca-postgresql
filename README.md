@@ -1,4 +1,4 @@
-# 📚 Sistema de Biblioteca - SQL
+#  Sistema de Biblioteca 📚 - SQL
 
 Projeto de banco de dados relacional para gerenciamento de uma biblioteca, desenvolvido com **PostgreSQL**.
 
