@@ -110,4 +110,5 @@ psql -d Biblioteca -f 07_testes.sql
 
 ## 👤 Autor
 
-Eric Farias
+**Eric Farias**
+GitHub: [@ericfariasds](https://github.com/ericfariasds)
