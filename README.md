@@ -1,24 +1,23 @@
 #  Sistema de Biblioteca 📚 - SQL
 
-Projeto de banco de dados relacional para gerenciamento de uma biblioteca, desenvolvido com **PostgreSQL**.
+Projeto de banco de dados relacional para gerenciamento de uma biblioteca, desenvolvido com **PostgreSQL**. Cobre modelagem de dados, automação via triggers, funções reutilizáveis e views de consulta.
 
 ## Estrutura do Projeto
+
+## 🗂️ Estrutura do Projeto
 
 ```
 biblioteca/
 ├── README.md
-├── schema/
-│   ├── create_tables.sql   # Criação das tabelas
-│   ├── triggers.sql        # Triggers automáticos
-│   ├── functions.sql       # Funções reutilizáveis
-│   └── views.sql           # Views para consultas
-├── data/
-│   └── seed.sql            # Dados de exemplo
-└── queries/
-    └── consultas.sql       # Consultas úteis
+├── 01_create_tables.sql   # Tabelas, constraints e índices
+├── 02_functions.sql       # Funções reutilizáveis (empréstimo, devolução, multas)
+├── 03_triggers.sql        # Automação de estoque, multas e status
+├── 04_views.sql           # Views para consultas comuns
+├── 05_seed.sql            # Dados de exemplo
+└── 06_consultas.sql       # Consultas de demonstração
 ```
 
-## Tabelas
+## 🗄️ Tabelas
 
 | Tabela | Descrição |
 |---|---|
@@ -29,49 +28,42 @@ biblioteca/
 | `emprestimos` | Registro de empréstimos e devoluções |
 | `multas` | Multas por atraso na devolução |
 
-## Funcionalidades
+## ⚙️ Funcionalidades
 
 ### Triggers
-- Atualiza estoque automaticamente ao emprestar/devolver
-- Gera multa automaticamente ao devolver com atraso
-- Atualiza status para `atrasado` quando a data passa
+- `trg_diminuir_estoque` - reduz `quantidade_disponivel` ao registrar um empréstimo, e impede empréstimo sem exemplares
+- `trg_devolver_livro` - devolve o exemplar ao estoque quando o status muda para `devolvido`
+- `trg_gerar_multa` - calcula e insere multa automaticamente quando a devolução ocorre com atraso
+- `trg_verificar_atraso` - atualiza o status para `atrasado` quando a data prevista já passou
 
 ### Functions
-- `fn_registrar_emprestimo(livro_id, membro_id, dias)` — Registra um novo empréstimo
-- `fn_registrar_devolucao(emprestimo_id)` — Registra a devolução
-- `fn_multas_membro(membro_id)` — Lista multas de um membro
-- `fn_total_multas_abertas(membro_id)` — Retorna total de multas em aberto
+- `fn_registrar_emprestimo(livro_id, membro_id, dias)` - registra um novo empréstimo, validando disponibilidade e status do membro
+- `fn_registrar_devolucao(emprestimo_id)` - registra a devolução de um empréstimo
+- `fn_multas_membro(membro_id)` - lista as multas associadas a um membro
+- `fn_total_multas_abertas(membro_id)` - retorna o total em aberto de um membro
 
 ### Views
-- `vw_livros` — Livros com autor, categoria e disponibilidade
-- `vw_emprestimos_ativos` — Empréstimos em andamento
-- `vw_multas_abertas` — Multas não pagas
-- `vw_livros_mais_emprestados` — Ranking de popularidade
-- `vw_membros_em_atraso` — Membros com pendências
+- `vw_livros` - livros com autor, categoria e disponibilidade
+- `vw_emprestimos_ativos` - empréstimos em andamento, com dias de atraso calculados
+- `vw_multas_abertas` - multas não pagas
+- `vw_livros_mais_emprestados` - ranking de popularidade
+- `vw_membros_em_atraso` - membros com pendências e total devido
 
-## Como executar
+## 🚀 Como executar
 
 ```bash
 # 1. Criar o banco de dados
 createdb Biblioteca
 
-# 2. Criar as tabelas
-psql -d Biblioteca -f schema/create_tables.sql
+# 2. Executar os scripts na ordem numerada
+psql -d Biblioteca -f 01_create_tables.sql
+psql -d Biblioteca -f 02_functions.sql
+psql -d Biblioteca -f 03_triggers.sql
+psql -d Biblioteca -f 04_views.sql
+psql -d Biblioteca -f 05_seed.sql
 
-# 3. Criar as functions
-psql -d Biblioteca -f schema/functions.sql
-
-# 4. Criar os triggers
-psql -d Biblioteca -f schema/triggers.sql
-
-# 5. Criar as views
-psql -d Biblioteca -f schema/views.sql
-
-# 6. Inserir dados de exemplo
-psql -d Biblioteca -f data/seed.sql
-
-# 7. Testar as consultas
-psql -d Biblioteca -f queries/consultas.sql
+# 3. Testar as consultas de exemplo
+psql -d Biblioteca -f 06_consultas.sql
 ```
 
 ## Tecnologias
@@ -81,4 +73,5 @@ psql -d Biblioteca -f queries/consultas.sql
 
 ## Autor
 
-Eric Farias
+**Eric Farias**
+GitHub: [@ericfariasds](https://github.com/ericfariasds)

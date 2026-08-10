@@ -85,7 +85,7 @@ BEGIN
     RETURN QUERY
     SELECT
         m.emprestimo_id,
-        l.titulo,
+        l.titulo::TEXT,
         m.dias_atraso,
         m.valor_total,
         m.paga

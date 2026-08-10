@@ -1,0 +1,24 @@
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# PostgreSQL
+*.sql.bak
+*.dump
+*.backup
+pgdata/
+
+# Variáveis de ambiente / credenciais
+.env
+.env.local
+*.pem
+
+# Logs
+*.log

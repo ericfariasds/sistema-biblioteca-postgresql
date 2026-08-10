@@ -3,11 +3,6 @@
 -- Autor: Eric
 -- Descrição: Criação das tabelas do sistema de biblioteca
 -- ============================================================
-
-CREATE DATABASE IF NOT EXISTS Biblioteca;
-\c Biblioteca;
-
--- ============================================================
 -- TABELA: autores
 -- ============================================================
 CREATE TABLE autores (
@@ -71,7 +66,8 @@ CREATE TABLE emprestimos (
     data_devolucao_real     DATE,
     status          VARCHAR(20) DEFAULT 'ativo'
                     CHECK (status IN ('ativo', 'devolvido', 'atrasado')),
-    criado_em       TIMESTAMP DEFAULT NOW()
+    criado_em       TIMESTAMP DEFAULT NOW(),
+    CONSTRAINT chk_datas_emprestimo CHECK (data_devolucao_prevista > data_emprestimo)
 );
 
 -- ============================================================
@@ -87,3 +83,13 @@ CREATE TABLE multas (
     data_pagamento  DATE,
     criado_em       TIMESTAMP DEFAULT NOW()
 );
+
+-- ============================================================
+-- ÍNDICES
+-- ============================================================
+CREATE INDEX idx_livros_autor_id       ON livros(autor_id);
+CREATE INDEX idx_livros_categoria_id   ON livros(categoria_id);
+CREATE INDEX idx_emprestimos_livro_id  ON emprestimos(livro_id);
+CREATE INDEX idx_emprestimos_membro_id ON emprestimos(membro_id);
+CREATE INDEX idx_emprestimos_status    ON emprestimos(status);
+CREATE INDEX idx_multas_emprestimo_id  ON multas(emprestimo_id);
