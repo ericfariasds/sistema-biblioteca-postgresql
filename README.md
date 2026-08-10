@@ -4,7 +4,7 @@ Projeto de banco de dados relacional para gerenciamento de uma biblioteca, desen
 
 ## Estrutura do Projeto
 
-## 🗂️ Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 biblioteca/
@@ -17,7 +17,7 @@ biblioteca/
 └── 06_consultas.sql       # Consultas de demonstração
 ```
 
-## 🗄️ Tabelas
+## Tabelas
 
 | Tabela | Descrição |
 |---|---|
@@ -28,7 +28,7 @@ biblioteca/
 | `emprestimos` | Registro de empréstimos e devoluções |
 | `multas` | Multas por atraso na devolução |
 
-## ⚙️ Funcionalidades
+## Funcionalidades
 
 ### Triggers
 - `trg_diminuir_estoque` - reduz `quantidade_disponivel` ao registrar um empréstimo, e impede empréstimo sem exemplares
@@ -49,7 +49,7 @@ biblioteca/
 - `vw_livros_mais_emprestados` - ranking de popularidade
 - `vw_membros_em_atraso` - membros com pendências e total devido
 
-## 🚀 Como executar
+## Como executar
 
 ```bash
 # 1. Criar o banco de dados
