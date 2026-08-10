@@ -83,6 +83,8 @@ psql -d Biblioteca -f 07_testes.sql
  
 Se algum `ASSERT` falhar, o `psql` para a execução e mostra o erro. Se passar tudo, a última linha confirma o sucesso.
 
+![Testes passando no pgAdmin](../biblioteca-sql/testMessages.png)
+
 ## Como executar
 
 ```bash
