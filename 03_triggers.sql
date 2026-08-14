@@ -58,7 +58,9 @@ DECLARE
     v_valor_total NUMERIC(10,2);
     v_valor_dia   NUMERIC(6,2) := 2.00;
 BEGIN
-    IF NEW.status = 'devolvido' AND NEW.data_devolucao_real IS NOT NULL THEN
+    IF NEW.status = 'devolvido'
+       AND OLD.status IS DISTINCT FROM 'devolvido'
+       AND NEW.data_devolucao_real IS NOT NULL THEN
         v_dias_atraso := NEW.data_devolucao_real - NEW.data_devolucao_prevista;
 
         IF v_dias_atraso > 0 THEN

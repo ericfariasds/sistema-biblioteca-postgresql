@@ -43,6 +43,8 @@ biblioteca/
 - `trg_gerar_multa` - calcula e insere multa automaticamente quando a devolução ocorre com atraso
 - `trg_verificar_atraso` - atualiza o status para `atrasado` quando a data prevista já passou
 
+📎 Ordem de disparo: [trigger-flow.md](./trigger-flow.md)
+
 ### Functions
 - `fn_registrar_emprestimo(livro_id, membro_id, dias)` - registra um novo empréstimo, validando disponibilidade e status do membro
 - `fn_registrar_devolucao(emprestimo_id)` - registra a devolução de um empréstimo
@@ -83,7 +85,7 @@ psql -d Biblioteca -f 07_testes.sql
  
 Se algum `ASSERT` falhar, o `psql` para a execução e mostra o erro. Se passar tudo, a última linha confirma o sucesso.
 
-![Testes passando no pgAdmin](../biblioteca-sql/testMessages.png)
+![Testes passando no pgAdmin](testMessages.png)
 
 ## Como executar
 

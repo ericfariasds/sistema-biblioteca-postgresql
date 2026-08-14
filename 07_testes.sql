@@ -183,6 +183,14 @@ BEGIN
     ASSERT v_dias_atraso = 5, format('esperado 5 dias de atraso, obtido %s', v_dias_atraso);
     ASSERT v_valor_total = 10.00, format('esperado multa de 10.00, obtido %s', v_valor_total);
 
+    -- Uma atualização posterior não pode criar uma segunda multa.
+    UPDATE emprestimos
+    SET criado_em = criado_em
+    WHERE id = v_emprestimo_atraso_id;
+
+    ASSERT (SELECT COUNT(*) FROM multas WHERE emprestimo_id = v_emprestimo_atraso_id) = 1,
+        'uma atualização após a devolução não deveria gerar outra multa';
+
     UPDATE _test_ids SET emprestimo_atraso_id = v_emprestimo_atraso_id;
 
     RAISE NOTICE 'TESTE 4 OK: trg_gerar_multa calcula corretamente dias_atraso e valor_total';
